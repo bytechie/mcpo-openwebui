@@ -1,0 +1,24 @@
+[service]
+name = "mcpov3"
+
+[build]
+builder = "dockerfile"
+
+[dockerfile]
+path = "./Dockerfile"
+
+[ports]
+http = 8000
+
+[deploy]
+startCommand = "/bin/sh -c 'exec uvx mcpo --port 8000 --name n8n_toolv3 --server-type streamable-http --  https://${N8N_PUBLIC_DOMAIN}/mcp/starter'"
+
+[[envVars]]
+key = "MCPO_API_KEY"
+value = "your-secret-key"
+
+[[envVars]]
+key = "SERVER_TYPE"
+value = "streamable-http"
+
+
