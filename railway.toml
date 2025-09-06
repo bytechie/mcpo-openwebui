@@ -11,25 +11,27 @@ path = "./Dockerfile"
 http = 8000
 
 [deploy]
-startCommand = "/bin/sh -c '
+startCommand = """
+/bin/sh -c '
 mkdir -p /app/config
 cat <<EOF > /app/config/config.json
 {
-  \"mcpServers\": {
-    \"starter\": {
-      \"type\": \"streamable_http\",
-      \"url\": \"https://${N8N_PUBLIC_DOMAIN}/mcp/starter\"
+  "mcpServers": {
+    "starter": {
+      "type": "streamable_http",
+      "url": "https://${N8N_PUBLIC_DOMAIN}/mcp/starter"
     },
-    \"page_request\": {
-      \"type\": \"streamable_http\",
-      \"url\": \"https://${N8N_PUBLIC_DOMAIN}/mcp/page-request\"
+    "page_request": {
+      "type": "streamable_http",
+      "url": "https://${N8N_PUBLIC_DOMAIN}/mcp/page-request"
     }
   }
 }
 EOF
 
-exec uvx mcpo --port 8000 --name n8n_tool --config /app/config/config.json --hot-reload 
-'"
+exec uvx mcpo --port 8000 --name n8n_tool --hot-reload --config /app/config/config.json
+'
+"""
 
 [[envVars]]
 key = "MCPO_API_KEY"
