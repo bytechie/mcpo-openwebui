@@ -1,5 +1,6 @@
 [service]
 name = "mcpov3"
+dependencies = ["n8n"]
 
 [build]
 builder = "dockerfile"
@@ -40,6 +41,10 @@ value = "your-secret-key"
 [[envVars]]
 key = "SERVER_TYPE"
 value = "streamable-http"
+
+[[envVars]]
+key = "N8N_PUBLIC_DOMAIN"
+value = "${{n8n.RAILWAY_PUBLIC_DOMAIN}}"
 
 [[volumes]]
 name = "mcpo-config"
