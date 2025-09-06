@@ -40,3 +40,7 @@ value = "your-secret-key"
 [[envVars]]
 key = "SERVER_TYPE"
 value = "streamable-http"
+
+[[volumes]]
+name = "mcpo-config"
+mountPath = "/app/config"
