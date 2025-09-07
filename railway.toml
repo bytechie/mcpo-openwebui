@@ -14,6 +14,7 @@ http = 8000
 [deploy]
 startCommand = """
 /bin/sh -c '
+export N8N_PUBLIC_DOMAIN=${N8N_PUBLIC_DOMAIN:-${n8n.RAILWAY_PUBLIC_DOMAIN}}
 mkdir -p /app/config
 cat <<EOF > /app/config/config.json
 {
@@ -41,10 +42,6 @@ value = "your-secret-key"
 [[envVars]]
 key = "SERVER_TYPE"
 value = "streamable-http"
-
-[[envVars]]
-key = "N8N_PUBLIC_DOMAIN"
-value = "${{n8n.RAILWAY_PUBLIC_DOMAIN}}"
 
 [[volumes]]
 name = "mcpo-config"
